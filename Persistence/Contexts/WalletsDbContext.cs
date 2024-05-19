@@ -1,20 +1,19 @@
-﻿using Domain.Entities.Wallet;
+﻿using Domain.Entities.Wallets;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Contexts
 {
-    public class WalletDbContext: DbContext
+    public class WalletsDbContext: DbContext
     {
-        public WalletDbContext(DbContextOptions<WalletDbContext> options)
-            :base(options) 
-        {            
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if(!optionsBuilder.IsConfigured)
+            {
+                string connectionString = ConfigurationHelper.GetConnectionString();
+                optionsBuilder.UseSqlServer(connectionString);
+            }
         }
 
 
@@ -28,6 +27,11 @@ namespace Persistence.Contexts
                 var deletedCheck = Expression.Lambda(Expression.Equal(Expression.Property(parameter, "IsDeleted"), Expression.Constant(false)), parameter);
                 modelBuilder.Entity(entityType.ClrType).HasQueryFilter(deletedCheck);
             }
+
+            modelBuilder.Entity<Wallet>().ToTable("Wallets");
+            modelBuilder.Entity<Transaction>().ToTable("Transactions");
+            modelBuilder.Entity<WalletBalanceHistory>().ToTable("WalletBalanceHistories");
+            modelBuilder.Entity<Profile>().ToTable("Profiles");
 
             base.OnModelCreating(modelBuilder);
         }

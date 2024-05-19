@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Wallet;
+﻿using Domain.Entities.Wallets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

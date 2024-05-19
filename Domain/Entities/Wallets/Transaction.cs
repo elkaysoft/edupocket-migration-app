@@ -1,12 +1,9 @@
 ﻿using Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Entities.Wallet
+namespace Domain.Entities.Wallets
 {
+    [Table("Transactions", Schema = "Wallet")]
     public class Transaction: BaseEntity<Guid>
     {
         public Guid SourceWalletId { get; set; }

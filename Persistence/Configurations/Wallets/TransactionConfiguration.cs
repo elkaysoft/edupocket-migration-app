@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Wallet;
+﻿using Domain.Entities.Wallets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -13,7 +13,7 @@ namespace Persistence.Configurations.Wallets
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
-            builder.ToTable("Wallet", t => t.HasComment("The table stores wallet balance history information"));
+            builder.ToTable("Wallet", t => t.HasComment("The table stores wallet transactions information"));
 
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Amount).HasPrecision(18, 2).IsRequired();

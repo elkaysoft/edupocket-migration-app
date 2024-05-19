@@ -7,10 +7,15 @@ using System.Reflection;
 namespace Persistence.Contexts
 {
     public class IdentityDbContext : DbContext
-    {
-        public IdentityDbContext(DbContextOptions<IdentityDbContext> options) :
-            base(options)
+    {        
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if(!optionsBuilder.IsConfigured)
+            {
+                string connectionString = ConfigurationHelper.GetConnectionString();
+                optionsBuilder.UseSqlServer(connectionString);
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

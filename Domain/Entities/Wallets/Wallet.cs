@@ -1,12 +1,14 @@
 ﻿using Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities.Wallet
+namespace Domain.Entities.Wallets
 {
+    [Table("VirtualWallets", Schema = "Wallet")]
     public class Wallet: BaseEntity<Guid>
     {
         public string WalletNumber { get; set; }
