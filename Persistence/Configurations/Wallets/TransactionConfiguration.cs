@@ -25,7 +25,7 @@ namespace Persistence.Configurations.Wallets
             builder.Property(t => t.DestinationAccountNumber).HasMaxLength(150);
             builder.Property(t => t.DestinationBankCode).HasMaxLength(150);
             builder.Property(t => t.DestinationWalletId).HasMaxLength(50);
-            builder.Property(t => t.SourceWalletId).HasMaxLength(50);
+            builder.Property(t => t.SourceWalletId).HasMaxLength(50).IsRequired();
             builder.Property(t => t.ServiceResponse).HasMaxLength(1000);
             builder.Property(t => t.TransactionReference).HasMaxLength(150);
             builder.Property(t => t.TransactionRecordType).HasConversion<string>().HasMaxLength(10);
@@ -38,6 +38,17 @@ namespace Persistence.Configurations.Wallets
 
             builder.Property(t => t.UpdatedBy).HasMaxLength(50);
             builder.Property(t => t.ModifiedByIp).HasMaxLength(50);
+            
+
+            builder.HasOne(f => f.SourceWallet)
+                .WithMany()
+                .HasForeignKey(f => f.SourceWalletId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(f => f.DestinationWallet)
+                .WithMany()
+                .HasForeignKey(f => f.DestinationWalletId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

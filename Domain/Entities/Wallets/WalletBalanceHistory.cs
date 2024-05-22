@@ -9,9 +9,9 @@ namespace Domain.Entities.Wallets
     public class WalletBalanceHistory: BaseEntity<Guid>
     {
         /// <summary>
-        /// WalletNumber
+        /// Wallet Id
         /// </summary>
-        public string WalletNumber { get; set; }
+        public Guid WalletId { get; set; }
         /// <summary>
         /// TransactionId
         /// </summary>
@@ -28,6 +28,13 @@ namespace Domain.Entities.Wallets
         /// The CheckSum
         /// </summary>
         public string CheckSum { get; set; }
+        /// <summary>
+        /// Gets or sets the wallet.
+        /// </summary>
+        /// <value>
+        /// The wallet.
+        /// </value>
+        public virtual Wallet Wallet { get; set; }
 
     }
 }

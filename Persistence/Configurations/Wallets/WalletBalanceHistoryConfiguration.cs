@@ -16,7 +16,7 @@ namespace Persistence.Configurations.Wallets
             builder.ToTable("Wallet", t => t.HasComment("The table stores wallet balance history information"));
 
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.WalletNumber).IsRequired().HasMaxLength(10);
+            builder.Property(t => t.WalletId).IsRequired().HasMaxLength(50);
             builder.Property(t => t.CheckSum).IsRequired().HasMaxLength(500);
             builder.Property(t => t.OpeningBalance).IsRequired().HasPrecision(18, 2);
             builder.Property(t => t.ClosingBalance).IsRequired().HasPrecision(18, 2);
@@ -28,6 +28,10 @@ namespace Persistence.Configurations.Wallets
 
             builder.Property(t => t.UpdatedBy).HasMaxLength(50);
             builder.Property(t => t.ModifiedByIp).HasMaxLength(50);
+
+            builder.HasOne(t => t.Wallet)
+                .WithMany(g => g.BalanceHistory)
+                .HasForeignKey(f => f.WalletId);
         }
     }
 }

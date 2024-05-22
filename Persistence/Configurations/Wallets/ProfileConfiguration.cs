@@ -32,7 +32,7 @@ namespace Persistence.Configurations.Wallets
             builder.Property(t => t.CreatedByIp).HasMaxLength(50);
 
             builder.Property(t => t.UpdatedBy).HasMaxLength(50);
-            builder.Property(t => t.ModifiedByIp).HasMaxLength(50);
+            builder.Property(t => t.ModifiedByIp).HasMaxLength(50);            
         }
     }
 }

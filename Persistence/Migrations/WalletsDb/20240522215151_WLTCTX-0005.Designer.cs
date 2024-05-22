@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations.WalletsDb
 {
     [DbContext(typeof(WalletsDbContext))]
-    partial class WalletsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240522215151_WLTCTX-0005")]
+    partial class WLTCTX0005
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,6 +204,9 @@ namespace Persistence.Migrations.WalletsDb
                     b.Property<Guid>("WalletId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("WalletId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DestinationWalletId");
@@ -208,6 +214,8 @@ namespace Persistence.Migrations.WalletsDb
                     b.HasIndex("SourceWalletId");
 
                     b.HasIndex("WalletId");
+
+                    b.HasIndex("WalletId1");
 
                     b.ToTable("Transactions", null, t =>
                         {
@@ -362,10 +370,14 @@ namespace Persistence.Migrations.WalletsDb
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Wallets.Wallet", "Wallet")
-                        .WithMany("Transactions")
+                        .WithMany()
                         .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.Wallets.Wallet", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("WalletId1");
 
                     b.Navigation("DestinationWallet");
 

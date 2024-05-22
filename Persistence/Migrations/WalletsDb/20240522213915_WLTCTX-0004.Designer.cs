@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations.WalletsDb
 {
     [DbContext(typeof(WalletsDbContext))]
-    partial class WalletsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240522213915_WLTCTX-0004")]
+    partial class WLTCTX0004
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,7 +201,7 @@ namespace Persistence.Migrations.WalletsDb
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("WalletId")
+                    b.Property<Guid?>("WalletId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -361,17 +364,13 @@ namespace Persistence.Migrations.WalletsDb
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Wallets.Wallet", "Wallet")
+                    b.HasOne("Domain.Entities.Wallets.Wallet", null)
                         .WithMany("Transactions")
-                        .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WalletId");
 
                     b.Navigation("DestinationWallet");
 
                     b.Navigation("SourceWallet");
-
-                    b.Navigation("Wallet");
                 });
 
             modelBuilder.Entity("Domain.Entities.Wallets.Wallet", b =>

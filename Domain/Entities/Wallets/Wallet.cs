@@ -17,5 +17,8 @@ namespace Domain.Entities.Wallets
         public Status Status { get; set; }
         public string CheckSum { get; set; }
         public bool IsPndActive { get; set; }
+
+        public ICollection<WalletBalanceHistory> BalanceHistory { get; set; }
+        public ICollection<Transaction> Transactions { get; set; }
     }
 }
