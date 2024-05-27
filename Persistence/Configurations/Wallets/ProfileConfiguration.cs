@@ -32,7 +32,11 @@ namespace Persistence.Configurations.Wallets
             builder.Property(t => t.CreatedByIp).HasMaxLength(50);
 
             builder.Property(t => t.UpdatedBy).HasMaxLength(50);
-            builder.Property(t => t.ModifiedByIp).HasMaxLength(50);            
+            builder.Property(t => t.ModifiedByIp).HasMaxLength(50);
+
+            builder.OwnsOne(o => o.Beneficiary).Property(t => t.NickName).HasColumnName("BeneficiaryNickName").HasMaxLength(50);
+            builder.OwnsOne(o => o.Beneficiary).Property(t => t.Name).HasColumnName("BeneficiaryAccountName").HasMaxLength(100);
+            builder.OwnsOne(o => o.Beneficiary).Property(t => t.WalletNumber).HasColumnName("BeneficiaryWalletNumber").HasMaxLength(15);
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations.WalletsDb
 {
     [DbContext(typeof(WalletsDbContext))]
-    partial class WalletsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240524123025_WLT-0007")]
+    partial class WLT0007
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -357,21 +360,15 @@ namespace Persistence.Migrations.WalletsDb
 
                             b1.Property<string>("Name")
                                 .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("BeneficiaryAccountName");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("NickName")
                                 .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("BeneficiaryNickName");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("WalletNumber")
                                 .IsRequired()
-                                .HasMaxLength(15)
-                                .HasColumnType("nvarchar(15)")
-                                .HasColumnName("BeneficiaryWalletNumber");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.HasKey("ProfileId");
 
