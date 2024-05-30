@@ -14,8 +14,8 @@ namespace Domain.Entities.Wallets
         public string Gender { get; set; }
         public string CheckSum { get; set; }        
         public string? ProfileImage { get; set; }
-        public UserType UserType { get; set; }
-        public Wallet Wallet { get; set; }
+        public string? TransactionPinHash { get; set; }
+        public UserType UserType { get; set; }        
         public Beneficiary Beneficiary { get; set;}
     }
 }

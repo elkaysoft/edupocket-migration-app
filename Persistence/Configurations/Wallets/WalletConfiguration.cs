@@ -22,6 +22,8 @@ namespace Persistence.Configurations.Wallets
             builder.Property(t => t.IsPndActive).HasDefaultValue(false);
             builder.Property(t => t.CheckSum).HasMaxLength(1000).IsRequired();
             builder.Property(t => t.ProfileId).IsRequired().HasMaxLength(50);
+            builder.Property(t => t.WalletSchemeId).IsRequired().HasMaxLength(50);
+
 
             builder.Property(t => t.CreatedBy).HasMaxLength(50).IsRequired();
             builder.Property(t => t.DateCreated).IsRequired();
