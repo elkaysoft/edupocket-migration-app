@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations.WalletsDb
 {
     [DbContext(typeof(WalletsDbContext))]
-    partial class WalletsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240605070113_WalletSchemeAccountTransactionModel")]
+    partial class WalletSchemeAccountTransactionModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -619,10 +622,6 @@ namespace Persistence.Migrations.WalletsDb
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TransactionId");
-
-                    b.HasIndex("WalletSchemeAccountId");
-
                     b.ToTable("WalletSchemeAccountsTransactions", null, t =>
                         {
                             t.HasComment("The table holds wallet scheme account transactions");
@@ -734,25 +733,6 @@ namespace Persistence.Migrations.WalletsDb
                         .IsRequired();
 
                     b.Navigation("WalletScheme");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Wallets.WalletSchemeAccountTransaction", b =>
-                {
-                    b.HasOne("Domain.Entities.Wallets.Transaction", "Transaction")
-                        .WithMany()
-                        .HasForeignKey("TransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Wallets.WalletSchemeAccount", "WalletSchemeAccount")
-                        .WithMany()
-                        .HasForeignKey("WalletSchemeAccountId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Transaction");
-
-                    b.Navigation("WalletSchemeAccount");
                 });
 
             modelBuilder.Entity("Domain.Entities.Wallets.Wallet", b =>

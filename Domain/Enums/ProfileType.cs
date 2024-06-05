@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums
 {
-    public enum UserType
+    public enum ProfileType
     {
         Student,
         Vendor,

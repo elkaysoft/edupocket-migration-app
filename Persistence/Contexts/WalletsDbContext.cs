@@ -36,6 +36,7 @@ namespace Persistence.Contexts
             modelBuilder.Entity<WalletScheme>().ToTable("WalletSchemes");
             modelBuilder.Entity<WalletSchemeAccount>().ToTable("WalletSchemeAccounts");
             modelBuilder.Entity<LimitConfiguration>().ToTable("LimitConfigurations");
+            modelBuilder.Entity<WalletSchemeAccountTransaction>().ToTable("WalletSchemeAccountsTransactions");
 
             base.OnModelCreating(modelBuilder);
         }
@@ -45,9 +46,8 @@ namespace Persistence.Contexts
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<WalletBalanceHistory> WalletBalanceHistories { get; set; }
         public DbSet<WalletScheme> WalletSchemes { get; set; }
-
         public DbSet<WalletSchemeAccount> WalletSchemeAccounts { get; set; }
-
         public DbSet<LimitConfiguration> LimitConfigurations { get; set; }
+        public DbSet<WalletSchemeAccountTransaction> WalletSchemeAccountsTransactions { get; set; }
     }
 }

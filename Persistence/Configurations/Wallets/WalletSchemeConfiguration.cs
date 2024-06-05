@@ -18,6 +18,7 @@ namespace Persistence.Configurations.Wallets
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Name).IsRequired().HasMaxLength(128);
             builder.Property(t => t.Code).IsRequired().HasMaxLength(28);
+            builder.Property(t => t.WalletSchemeType).HasConversion<string>().HasMaxLength(15);
             builder.Property(t => t.LimitConfigurationId).IsRequired().HasMaxLength(50);
 
             builder.Property(t => t.CreatedBy).HasMaxLength(50).IsRequired();
