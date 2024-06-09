@@ -19,8 +19,7 @@ namespace Persistence.Configurations.Wallets
             builder.Property(t => t.FirstName).IsRequired().HasMaxLength(50);
             builder.Property(t => t.LastName).IsRequired().HasMaxLength(50);
             builder.Property(t => t.OtherName).HasMaxLength(50);
-            builder.Property(t => t.UserType).HasMaxLength(20);
-            builder.Property(t => t.CheckSum).IsRequired().HasMaxLength(500);
+            builder.Property(t => t.UserType).HasMaxLength(20);            
             builder.Property(t => t.ProfileImage).HasMaxLength(1500);
             builder.Property(t => t.EmailAddress).IsRequired().HasMaxLength(150);
             builder.Property(t => t.MobileNumber).IsRequired().HasMaxLength(50);
