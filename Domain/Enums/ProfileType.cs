@@ -3,7 +3,6 @@
     public enum ProfileType
     {
         Student,
-        Vendor,
-        Admin
+        Vendor        
     }
 }

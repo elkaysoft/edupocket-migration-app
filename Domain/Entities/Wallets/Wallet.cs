@@ -16,9 +16,7 @@ namespace Domain.Entities.Wallets
         public Guid ProfileId { get; set; }
         public Status Status { get; set; }
         public string CheckSum { get; set; }
-        public bool IsPndActive { get; set; }
-        public Guid WalletSchemeId { get; set; }
-        public virtual WalletScheme WalletScheme { get; set; }
+        public bool IsPndActive { get; set; }    
 
         public ICollection<WalletBalanceHistory> BalanceHistory { get; set; }
         public ICollection<Transaction> Transactions { get; set; }

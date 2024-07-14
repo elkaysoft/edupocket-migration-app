@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Persistence.Configurations.Wallets
 {
-    public class WalletSchemeAccountTransactionConfiguration : IEntityTypeConfiguration<WalletSchemeAccountTransaction>
+    public class SystemWalletAccountTransactionConfiguration : IEntityTypeConfiguration<SystemWalletAccountTransaction>
     {
-        public void Configure(EntityTypeBuilder<WalletSchemeAccountTransaction> builder)
+        public void Configure(EntityTypeBuilder<SystemWalletAccountTransaction> builder)
         {
             builder.ToTable("WalletSchemeAccountTransactions", t => t.HasComment("The table holds wallet scheme account transactions"));
 

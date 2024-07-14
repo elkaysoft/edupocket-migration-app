@@ -9,11 +9,11 @@ namespace Domain.Enums
 {
     public enum TransactionType
     {
-        [Display(Name = "Fund Wallet")]
-        FundWallet,
-        [Display(Name = "Wallet to Wallet")]
-        Wallet2Wallet,
-        [Display(Name = "Wallet to Bank")]
-        Wallet2Bank
+        [Display(Name = "Wallet Inflow")]
+        WalletInflow,
+        [Display(Name = "Local Transfer")]
+        LocalTransfer,
+        [Display(Name = "Outbound Transfer")]
+        OutboundTransfer
     }
 }

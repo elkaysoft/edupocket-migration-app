@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.Wallets
 {
-    [Table("WalletSchemeAccountTransaction", Schema = "Wallet")]
-    public class WalletSchemeAccountTransaction: BaseEntity<Guid>
+    [Table("SystemWalletAccountTransaction", Schema = "Wallet")]
+    public class SystemWalletAccountTransaction: BaseEntity<Guid>
     {
         public Guid WalletSchemeAccountId { get; set; }
         public Guid? TransactionId { get; set; }
@@ -19,6 +19,6 @@ namespace Domain.Entities.Wallets
         public string? TransactionReference { get; set; }
         public string? CheckSum { get; set; }
         public virtual Transaction Transaction { get; set; }
-        public virtual WalletSchemeAccount  WalletSchemeAccount { get; set; }
+        public virtual SystemWalletAccount  WalletSchemeAccount { get; set; }
     }
 }
