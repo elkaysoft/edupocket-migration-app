@@ -25,7 +25,7 @@ namespace Persistence.Configurations.Wallets
             builder.Property(t => t.MobileNumber).IsRequired().HasMaxLength(50);
 
             builder.Property(t => t.UserType).HasConversion<string>().IsRequired().HasMaxLength(10);
-            builder.Property(t => t.TransactionPinHash).IsRequired().HasMaxLength(200);
+            builder.Property(t => t.TransactionPinHash).HasMaxLength(500);
 
             builder.Property(t => t.CreatedBy).HasMaxLength(50).IsRequired();
             builder.Property(t => t.DateCreated).IsRequired();

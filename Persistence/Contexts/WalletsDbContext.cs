@@ -22,12 +22,15 @@ namespace Persistence.Contexts
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly(), p => p.Namespace == "Persistence.Configurations.Wallets");
 
-            //foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-            //{
-            //    var parameter = Expression.Parameter(entityType.ClrType, "p");
-            //    var deletedCheck = Expression.Lambda(Expression.Equal(Expression.Property(parameter, "IsDeleted"), Expression.Constant(false)), parameter);
-            //    modelBuilder.Entity(entityType.ClrType).HasQueryFilter(deletedCheck);
-            //}
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                var parameter = Expression.Parameter(entityType.ClrType, "p");
+                if (!entityType.IsOwned())
+                {
+                    var deletedCheck = Expression.Lambda(Expression.Equal(Expression.Property(parameter, "IsDeleted"), Expression.Constant(false)), parameter);
+                    modelBuilder.Entity(entityType.ClrType).HasQueryFilter(deletedCheck);
+                }
+            }
 
             modelBuilder.Entity<Wallet>().ToTable("Wallets");
             modelBuilder.Entity<Transaction>().ToTable("Transactions");
